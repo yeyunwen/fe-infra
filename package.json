@@ -1,0 +1,14 @@
+{
+  "name": "sxfe",
+  "private": true,
+  "packageManager": "pnpm@9.1.4",
+  "scripts": {
+    "create-api:start": "pnpm run --filter create-api start",
+    "preinstall": "npx only-allow pnpm"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.1",
+    "tsx": "^4.11.2",
+    "typescript": "^5.4.5"
+  }
+}

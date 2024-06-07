@@ -1,0 +1,29 @@
+{
+  "name": "create-api",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "test": "tsx src/test.ts"
+  },
+  "main": "",
+  "module": "",
+  "types": "",
+  "exports": {
+    ".": {
+      "require": "",
+      "module": "./src/index.ts",
+      "types": ""
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "handlebars": "^4.7.8",
+    "openapi-typescript": "7.0.0-rc.0",
+    "share": "workspace:*"
+  }
+}

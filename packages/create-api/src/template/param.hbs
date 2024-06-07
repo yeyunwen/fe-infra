@@ -1,0 +1,12 @@
+type ParamsType = {
+{{#each parameters}}
+  /** *
+  {{description}}
+  */
+  {{#if required}}
+    {{name}}:{{schema.type}};
+  {{else}}
+    {{name}}?:{{schema.type}};
+  {{/if}}
+{{/each}}
+}
