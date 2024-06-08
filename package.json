@@ -1,14 +1,31 @@
 {
   "name": "sxfe",
   "private": true,
+  "type": "module",
   "packageManager": "pnpm@9.1.4",
   "scripts": {
     "create-api:start": "pnpm run --filter create-api start",
+    "lint": "eslint --cache .",
     "preinstall": "npx only-allow pnpm"
   },
   "devDependencies": {
+    "@eslint/js": "^9.4.0",
     "@types/node": "^20.14.1",
+    "eslint": "^9.4.0",
+    "globals": "^15.4.0",
     "tsx": "^4.11.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.12.0"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "typescript-eslint>eslint": "^9.0.0",
+        "@typescript-eslint/eslint-plugin>eslint": "^9.0.0",
+        "@typescript-eslint/parser>eslint": "^9.0.0",
+        "@typescript-eslint/type-utils>eslint": "^9.0.0",
+        "@typescript-eslint/utils>eslint": "^9.0.0"
+      }
+    }
   }
 }
