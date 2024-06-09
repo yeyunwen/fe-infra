@@ -52,7 +52,7 @@ const generateResponse = (responses: ResponsesObject) => {
 
 export const generateRequest = async (
   pathItem: OperationObject,
-  info: ApiInfo
+  info: ApiInfo,
 ) => {
   const { parameters, responses } = pathItem;
   const { url, method } = info;
@@ -68,8 +68,9 @@ export const regionTree = (params: ParamsType) =>
     }<typeof params, IResponseType<ResponseType>>(${url}, params)`;
 };
 
-const { data: apiJson } = await getApiJson<OpenAPI3>(url);
-if (apiJson) {
+const response = await getApiJson<{ data: OpenAPI3 }>(url);
+if (response && response.data) {
+  const { data: apiJson } = response;
   const { paths } = apiJson;
   const urlList = Object.keys(apiJson.paths!);
   for (const url of urlList) {
@@ -79,7 +80,7 @@ if (apiJson) {
       const apiInfo = { url, method: method as keyof ReqMethod };
       const apiType = generateRequest(
         pathInfo[method as keyof PathItemObject],
-        apiInfo
+        apiInfo,
       );
       console.log(apiType);
     });

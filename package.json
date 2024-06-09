@@ -5,14 +5,34 @@
   "packageManager": "pnpm@9.1.4",
   "scripts": {
     "create-api:start": "pnpm run --filter create-api start",
+    "check": "tsc --incremental --noEmit",
     "lint": "eslint --cache .",
-    "preinstall": "npx only-allow pnpm"
+    "format": "prettier --write --cache .",
+    "preinstall": "npx only-allow pnpm",
+    "postinstall": "simple-git-hooks"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged && pnpm check",
+    "commit-msg": "node scripts/verify-commit.js"
+  },
+  "lint-staged": {
+    "*.{js,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "eslint --fix",
+      "prettier --parser=typescript --write"
+    ]
   },
   "devDependencies": {
     "@eslint/js": "^9.4.0",
     "@types/node": "^20.14.1",
     "eslint": "^9.4.0",
     "globals": "^15.4.0",
+    "lint-staged": "^15.2.5",
+    "picocolors": "^1.0.1",
+    "prettier": "^3.3.1",
+    "simple-git-hooks": "^2.11.1",
     "tsx": "^4.11.2",
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.12.0"

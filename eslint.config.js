@@ -10,8 +10,15 @@ export default tsLint.config(
     },
   },
   pluginJs.configs.recommended,
-  ...tsLint.configs.recommended,
+  ...tsLint.configs.recommended.map((config) => {
+    return {
+      ...config,
+      rules: {
+        "@typescript-eslint/no-explicit-any": "off",
+      },
+    };
+  }),
   {
     ignores: ["**/dist/**"],
-  }
+  },
 );
