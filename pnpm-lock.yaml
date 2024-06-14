@@ -44,6 +44,9 @@ importers:
 
   packages/create-api:
     dependencies:
+      '@sxfe/shared':
+        specifier: workspace:*
+        version: link:../shared
       axios:
         specifier: ^1.7.2
         version: 1.7.2
@@ -53,13 +56,12 @@ importers:
       openapi-typescript:
         specifier: 7.0.0-rc.0
         version: 7.0.0-rc.0(typescript@5.4.5)
-      share:
-        specifier: workspace:*
-        version: link:../share
 
   packages/net: {}
 
   packages/share: {}
+
+  packages/shared: {}
 
 packages:
 

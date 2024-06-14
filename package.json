@@ -4,7 +4,7 @@
   "type": "module",
   "packageManager": "pnpm@9.1.4",
   "scripts": {
-    "create-api:start": "pnpm run --filter create-api start",
+    "create-api:start": "pnpm run --filter @sxfe/create-api start",
     "check": "tsc --incremental --noEmit",
     "lint": "eslint --cache .",
     "format": "prettier --write --cache .",
