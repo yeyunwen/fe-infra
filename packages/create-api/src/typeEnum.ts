@@ -28,11 +28,9 @@ dateKeyList.forEach((key) => {
   dateEnum[key] = "Date";
 });
 
-export const typeEnum = {
+export const typeEnum: { [key: string]: string } = {
   ...stringEnum,
   ...numberEnum,
   ...dateEnum,
   boolean: "boolean",
-  object: "{}",
-  array: "[]",
 };

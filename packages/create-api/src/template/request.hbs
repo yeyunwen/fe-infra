@@ -1,0 +1,38 @@
+{{#with apiData}}
+  import request from "@sxfe/net/request";
+
+  export type {{ name }}ParamsType = {
+    {{#each paramsList}}
+     /** {{description}} */
+      {{#if required}}
+        {{name}}: {{type}};
+      {{else}}
+        {{name}}?: {{type}};
+      {{/if}}
+    {{/each}}
+  }
+  export type {{ name }}ResponseType = {
+    {{#each responseList}}
+     /** {{description}} */
+      {{#if required}}
+        {{name}}: {{{type}}};
+      {{else}}
+        {{name}}?: {{{type}}};
+      {{/if}}
+    {{/each}}
+  }
+
+  /** {{summary}} */
+  export const {{method}}{{#upperFirstChar name }}{{/upperFirstChar}} = (params: {{ name }}ParamsType) => {
+    return request<{{ name }}ParamsType, {{ name }}ResponseType>({
+      url: "{{ url }}",
+      method: "{{ method }}",
+     {{#eq method 'get'}}
+      params,
+     {{/eq}}
+     {{#eq method 'post'}}
+      data: params,
+     {{/eq}}
+    });
+  }
+{{/with}}

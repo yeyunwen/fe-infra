@@ -1,13 +1,12 @@
 import Handlebars from "handlebars";
-
 import axios from "axios";
 import type {
   OpenAPI3,
   OperationObject,
   ParameterObject,
-  PathItemObject,
   ResponsesObject,
 } from "openapi-typescript";
+import { ServiceGenerator } from "./serviceGenerator";
 
 type ReqMethod = typeof REQ_METHOD;
 const REQ_METHOD = {
@@ -15,13 +14,14 @@ const REQ_METHOD = {
   post: "postRequst",
 };
 
-const url =
-  process.argv[2] || "http://127.0.0.1:4523/export/openapi/5?version=3.0";
-const getApiJson = async <T>(url: string) => {
-  const response = await axios.get<any, T>(url).catch((err) => {
-    console.log("err1", err);
-  });
-  return response;
+const getApiJson = async (url: string) => {
+  try {
+    const response = await axios.get<any, { data: OpenAPI3 }>(url);
+    return response.data;
+  } catch (error) {
+    console.log("getApiJson error: ", error);
+    process.exit(1);
+  }
 };
 
 type ApiInfo = {
@@ -68,21 +68,19 @@ export const regionTree = (params: ParamsType) =>
     }<typeof params, IResponseType<ResponseType>>(${url}, params)`;
 };
 
-const response = await getApiJson<{ data: OpenAPI3 }>(url);
-if (response && response.data) {
-  const { data: apiJson } = response;
-  const { paths } = apiJson;
-  const urlList = Object.keys(apiJson.paths!);
-  for (const url of urlList) {
-    const pathInfo = paths![url] as PathItemObject;
-    const methodList = Object.keys(pathInfo);
-    methodList.forEach((method) => {
-      const apiInfo = { url, method: method as keyof ReqMethod };
-      const apiType = generateRequest(
-        pathInfo[method as keyof PathItemObject],
-        apiInfo,
-      );
-      console.log(apiType);
-    });
-  }
-}
+type ResFnOption = {
+  url: string;
+};
+const genResFn = async ({ url }: ResFnOption) => {
+  const schemaJson = await getApiJson(url);
+  const serviceGenerator = new ServiceGenerator(schemaJson, {
+    basePath: "src/api",
+  });
+  serviceGenerator.genFile();
+};
+
+export default genResFn;
+
+genResFn({
+  url: "http://127.0.0.1:4523/export/openapi/2?version=3.0",
+});
