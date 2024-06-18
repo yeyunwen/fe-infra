@@ -5,6 +5,7 @@
   "packageManager": "pnpm@9.1.4",
   "scripts": {
     "create-api:start": "pnpm run --filter @sxfe/create-api start",
+    "build": "rollup -c",
     "check": "tsc --incremental --noEmit",
     "lint": "eslint --cache .",
     "format": "prettier --write --cache .",
@@ -26,13 +27,16 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.4.0",
+    "@rollup/plugin-typescript": "^11.1.6",
     "@types/node": "^20.14.1",
     "eslint": "^9.4.0",
     "globals": "^15.4.0",
     "lint-staged": "^15.2.5",
     "picocolors": "^1.0.1",
     "prettier": "^3.3.1",
+    "rollup": "^4.18.0",
     "simple-git-hooks": "^2.11.1",
+    "tslib": "^2.6.3",
     "tsx": "^4.11.2",
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.12.0"
