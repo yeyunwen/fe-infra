@@ -1,23 +1,21 @@
 import fs from "node:fs";
 import path from "node:path";
 import {
-  MediaTypeObject,
-  ObjectSubtype,
-  OpenAPI3,
-  OperationObject,
-  ParameterObject,
-  PathItemObject,
-  PathsObject,
-  RequestBodyObject,
-  ResponseObject,
-  SchemaObject,
+  type MediaTypeObject,
+  type ObjectSubtype,
+  type OpenAPI3,
+  type OperationObject,
+  type ParameterObject,
+  type PathItemObject,
+  type PathsObject,
+  type RequestBodyObject,
+  type ResponseObject,
+  type SchemaObject,
 } from "openapi-typescript";
 import Handlebars from "handlebars";
 import prettier from "prettier";
 import { upperFirstChar } from "@sxfe/shared";
 import { typeEnum } from "./typeEnum";
-
-console.log(upperFirstChar);
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
@@ -35,13 +33,13 @@ Handlebars.registerHelper("eq", function (v1, v2, options) {
   }
 });
 
-type PropsItem = {
+export type PropsItem = {
   type: string;
   description: string;
   name: string;
   required: boolean;
 };
-type ApiData = {
+export type ApiData = {
   tag: string;
   url: string;
   name: string;
@@ -50,7 +48,7 @@ type ApiData = {
   responseList: PropsItem[];
 } & OperationObject;
 
-type GeneratorOptions = {
+export type GeneratorOptions = {
   basePath: string;
 };
 
@@ -122,7 +120,7 @@ export class ServiceGenerator {
 
   public handleObjectSubType(schema: ObjectSubtype) {
     const props: PropsItem[] = [];
-    Object.keys(schema.properties!).forEach((key) => {
+    Object.keys(schema.properties || {}).forEach((key) => {
       props.push({
         name: key,
         description: schema.properties![key].description || "",
@@ -135,7 +133,7 @@ export class ServiceGenerator {
 
   public async genRequestTemplate(apiData: ApiData) {
     const template = fs.readFileSync(
-      path.resolve(__dirname, "./template/request.hbs"),
+      path.resolve(__dirname, "../", "./template/request.hbs"),
       "utf-8",
     );
     let content = Handlebars.compile(template)({ apiData });
@@ -200,7 +198,7 @@ export class ServiceGenerator {
     Object.keys(this.apiData).forEach((key) => {
       const data = this.apiData[key];
       const folderPath = path.join(
-        __dirname,
+        // __dirname,
         this.options.basePath,
         data[0].tag,
       );

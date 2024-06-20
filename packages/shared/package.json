@@ -3,15 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "./src/index.ts",
-  "module": "./src/index.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "./dist/index.cjs.js",
+  "module": "./src/index.esm.js",
+  "scripts": {},
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
-      "import": "./src/index.ts",
-      "module": "./src/index.ts"
+      "import": "./dist/index.esm.js",
+      "module": "./dist/index.esm.js",
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs.js"
     },
     "./*": "./*"
   },
