@@ -197,11 +197,7 @@ export class ServiceGenerator {
   public genFile() {
     Object.keys(this.apiData).forEach((key) => {
       const data = this.apiData[key];
-      const folderPath = path.join(
-        // __dirname,
-        this.options.basePath,
-        data[0].tag,
-      );
+      const folderPath = path.join(this.options.basePath, data[0].tag);
 
       if (!fs.existsSync(folderPath)) {
         fs.mkdirSync(folderPath, {

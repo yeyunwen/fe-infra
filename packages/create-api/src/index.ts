@@ -1,4 +1,9 @@
-export { genResFn, getApiJson, type ResFnOption } from "./genResFn";
+export {
+  genResFn,
+  getApiJson,
+  defineConfig,
+  type ResFnOption,
+} from "./genResFn";
 export {
   ServiceGenerator,
   type PropsItem,
