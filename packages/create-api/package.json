@@ -25,8 +25,8 @@
     "./*": "./*"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "yeyunwen <https://github.com/yeyunwen>",
+  "license": "MIT",
   "dependencies": {
     "@sxfe/shared": "workspace:*",
     "handlebars": "^4.7.8",
