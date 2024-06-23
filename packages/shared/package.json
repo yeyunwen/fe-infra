@@ -1,13 +1,14 @@
 {
-  "name": "@sxfe/shared",
-  "version": "1.0.0",
+  "name": "sxfe-shared",
+  "version": "0.1.0",
   "description": "",
   "type": "module",
   "main": "./dist/index.cjs.js",
   "module": "./src/index.esm.js",
   "scripts": {},
   "files": [
-    "dist"
+    "dist",
+    ""
   ],
   "exports": {
     ".": {

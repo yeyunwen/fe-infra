@@ -14,7 +14,7 @@ import {
 } from "openapi-typescript";
 import Handlebars from "handlebars";
 import prettier from "prettier";
-import { upperFirstChar } from "@sxfe/shared";
+import { upperFirstChar } from "sxfe-shared";
 import { typeEnum } from "./typeEnum";
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);

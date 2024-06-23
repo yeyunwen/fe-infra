@@ -27,6 +27,7 @@
     ]
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.5",
     "@eslint/js": "^9.4.0",
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/node": "^20.14.1",

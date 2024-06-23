@@ -1,6 +1,6 @@
 {
-  "name": "@sxfe/create-api",
-  "version": "1.0.0",
+  "name": "sxfe-create-api",
+  "version": "0.1.1",
   "description": "",
   "type": "module",
   "scripts": {},
@@ -10,7 +10,7 @@
     "bin"
   ],
   "bin": {
-    "create-api": "bin/create-api.js"
+    "sxfe-create-api": "bin/sxfe-create-api.js"
   },
   "main": "dist/index.esm.js",
   "module": "dist/index.esm.js",
@@ -28,7 +28,7 @@
   "author": "yeyunwen <https://github.com/yeyunwen>",
   "license": "MIT",
   "dependencies": {
-    "@sxfe/shared": "workspace:*",
+    "sxfe-shared": "workspace:*",
     "handlebars": "^4.7.8",
     "openapi-typescript": "7.0.0-rc.0"
   }
