@@ -6,7 +6,7 @@ import tsLint from "typescript-eslint";
 export default tsLint.config(
   {
     languageOptions: {
-      globals: { ...globals.browser, ...globals.node },
+      globals: { ...globals.browser, ...globals.node, ...globals.jest },
     },
   },
   pluginJs.configs.recommended,
@@ -19,6 +19,6 @@ export default tsLint.config(
     };
   }),
   {
-    ignores: ["**/dist/**"],
+    ignores: ["**/dist/**", "**/temp/**"],
   },
 );
