@@ -1,6 +1,6 @@
-{{#with apiData}}
-  import request from "@sxfe/net/request";
+{{{ requestFn }}}
 
+{{#with apiData}}
   export type {{ name }}ParamsType = {
     {{#each paramsList}}
      /** {{description}} */

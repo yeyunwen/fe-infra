@@ -16,6 +16,7 @@ import Handlebars from "handlebars";
 import prettier from "prettier";
 import { upperFirstChar } from "sxfe-shared";
 import { typeEnum } from "./typeEnum";
+import pc from "picocolors";
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
@@ -50,6 +51,7 @@ export type ApiData = {
 
 export type GeneratorOptions = {
   basePath: string;
+  requestFn: string;
 };
 
 export class ServiceGenerator {
@@ -136,13 +138,25 @@ export class ServiceGenerator {
       path.resolve(__dirname, "../", "./template/request.hbs"),
       "utf-8",
     );
-    let content = Handlebars.compile(template)({ apiData });
-
-    content = await prettier.format(content, {
-      semi: true,
-      singleQuote: false,
-      parser: "typescript",
+    let content = Handlebars.compile(template)({
+      requestFn: this.options.requestFn,
+      apiData,
     });
+
+    content = await prettier
+      .format(content, {
+        semi: true,
+        singleQuote: false,
+        parser: "typescript",
+      })
+      .catch((err) => {
+        console.log(
+          pc.red(`[sxfe-create-api]: ${pc.inverse("prettier失败")}`),
+          err,
+        );
+
+        process.exit(1);
+      });
 
     return content;
   }
