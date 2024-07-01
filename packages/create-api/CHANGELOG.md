@@ -1,5 +1,13 @@
 # sxfe-create-api
 
+## 0.1.3
+
+### Patch Changes
+
+- 1.支持文件名中文转拼音
+- Updated dependencies
+  - sxfe-shared@0.1.1
+
 ## 0.1.2
 
 ### Patch Changes

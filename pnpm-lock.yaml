@@ -83,10 +83,11 @@ importers:
       sxfe-shared:
         specifier: workspace:*
         version: link:../shared
+      tiny-pinyin:
+        specifier: ^1.3.2
+        version: 1.3.2
 
   packages/net: {}
-
-  packages/share: {}
 
   packages/shared: {}
 
@@ -2709,6 +2710,9 @@ packages:
 
   text-table@0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
+
+  tiny-pinyin@1.3.2:
+    resolution: {integrity: sha512-uHNGu4evFt/8eNLldazeAM1M8JrMc1jshhJJfVRARTN3yT8HEEibofeQ7QETWQ5ISBjd6fKtTVBCC/+mGS6FpA==}
 
   tmp@0.0.33:
     resolution: {integrity: sha512-jRCJlojKnZ3addtTOjdIqoRuPEKBvNXcGYqzO6zWZX8KfKEpnGY5jfggJQ3EjKuu8D4bJRr0y+cYJFmYbImXGw==}
@@ -5997,6 +6001,8 @@ snapshots:
       minimatch: 3.1.2
 
   text-table@0.2.0: {}
+
+  tiny-pinyin@1.3.2: {}
 
   tmp@0.0.33:
     dependencies:

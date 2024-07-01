@@ -1,5 +1,11 @@
 # sxfe-shared
 
+## 0.1.1
+
+### Patch Changes
+
+- 1.判断字符是否为中文
+
 ## 0.1.0
 
 ### Minor Changes

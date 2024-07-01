@@ -14,9 +14,10 @@ import {
 } from "openapi-typescript";
 import Handlebars from "handlebars";
 import prettier from "prettier";
-import { upperFirstChar } from "sxfe-shared";
+import { upperFirstChar, isChinese } from "sxfe-shared";
 import { typeEnum } from "./typeEnum";
 import pc from "picocolors";
+import pinyin from "tiny-pinyin";
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
@@ -208,10 +209,20 @@ export class ServiceGenerator {
     return "any";
   }
 
+  public getFolderName(tag: string) {
+    if (isChinese(tag)) {
+      return pinyin.convertToPinyin(tag, "", true);
+    }
+    return tag;
+  }
+
   public genFile() {
     Object.keys(this.apiData).forEach((key) => {
       const data = this.apiData[key];
-      const folderPath = path.join(this.options.basePath, data[0].tag);
+      const folderPath = path.join(
+        this.options.basePath,
+        this.getFolderName(data[0].tag),
+      );
 
       if (!fs.existsSync(folderPath)) {
         fs.mkdirSync(folderPath, {
@@ -224,5 +235,7 @@ export class ServiceGenerator {
         fs.writeFileSync(path.join(folderPath, fileName), content);
       });
     });
+
+    console.log(pc.green(`[sxfe-create-api]: 文件生成成功`));
   }
 }
